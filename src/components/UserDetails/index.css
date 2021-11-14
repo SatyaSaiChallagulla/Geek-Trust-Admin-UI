@@ -1,0 +1,19 @@
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+tr {
+  border: 1px solid black;
+  height: 30px;
+}
+
+.selected-checkbox {
+  background-color: gray;
+  border-right: 1px solid gray;
+}
+
+.user-row {
+  border-bottom: 1px solid black;
+}
