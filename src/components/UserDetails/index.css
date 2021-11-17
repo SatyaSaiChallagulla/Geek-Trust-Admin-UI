@@ -1,12 +1,53 @@
+.user-row {
+  border: 1px solid black;
+  height: 30px;
+  font-family: 'Caveat';
+}
+
+.table-row-cell {
+  border: 1px solid black;
+  padding-left: 5px;
+}
+
 .button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-tr {
-  border: 1px solid black;
-  height: 30px;
+.edit-icon {
+  font-size: 16px;
+  color: #e6197c;
+}
+
+.delete-icon {
+  font-size: 16px;
+  color: #e80c25;
+}
+
+.save-icon {
+  font-size: 16px;
+  color: #153fe8;
+}
+@media screen and (min-width: 768px) {
+  .table-row-cell {
+    font-size: 20px;
+  }
+
+  .edit-icon {
+    font-size: 20px;
+    color: #e6197c;
+  }
+
+  .delete-icon {
+    font-size: 20px;
+    color: #e80c25;
+  }
+
+  .save-icon {
+    font-size: 20px;
+    color: #153fe8;
+  }
 }
 
 .selected-checkbox {

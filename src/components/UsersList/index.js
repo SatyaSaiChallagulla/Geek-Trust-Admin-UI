@@ -14,10 +14,9 @@ class UsersList extends Component {
     usersList: [],
     usersListApiStatus: apiStatusConstants.initial,
     searchInput: '',
-    activePage: 10,
+    activePage: 1,
     offset: 0,
     limit: maxNumberOfUserPerPage,
-    page: 1,
   }
 
   componentDidMount() {
@@ -68,11 +67,11 @@ class UsersList extends Component {
   //deleting the selected users from Users List
   onDeleteSelectedUsers = () => {
     const {usersList} = this.state
-    // filter the selected users that  we want to delete
-    const selectedUsersToDelete = usersList.filter(
+    // updating the users list after deleting the users
+    const newUsersList = usersList.filter(
       eachUser => eachUser.isChecked !== true,
     )
-    this.setState({usersList: selectedUsersToDelete})
+    this.setState({usersList: newUsersList})
   }
 
   onChangeSearchInput = event => {
@@ -125,7 +124,6 @@ class UsersList extends Component {
   handlingPageChange(pageNumber) {
     if (pageNumber > 1) {
       this.setState({
-        page: pageNumber,
         activePage: pageNumber,
         offset: (pageNumber - 1) * maxNumberOfUserPerPage,
         limit: pageNumber * maxNumberOfUserPerPage,
@@ -142,11 +140,11 @@ class UsersList extends Component {
 
   //to show the Users List after successful handling of API
   renderUsersList = () => {
-    const {usersList, searchInput, offset, page, limit} = this.state
+    const {usersList, searchInput, offset, limit, activePage} = this.state
     const searchResults = usersList.filter(
       eachUser =>
-        eachUser.id <= limit &&
         eachUser.id > offset &&
+        eachUser.id <= limit &&
         (eachUser.name.toLowerCase().includes(searchInput.toLowerCase()) ||
           eachUser.email.toLowerCase().includes(searchInput.toLowerCase()) ||
           eachUser.role.toLowerCase().includes(searchInput.toLowerCase())),
@@ -156,18 +154,20 @@ class UsersList extends Component {
     return (
       <>
         {emptyUsersList ? (
-          <h1 className="no-data-heading">No Data Found in this Page {page}</h1>
+          <h1 className="no-data-heading">
+            No Data Found in this Page {activePage}
+          </h1>
         ) : (
           <table className="users-table">
             <thead>
               <tr className="users-table-header">
-                <th className="table-header-cell ">
+                <th className="users-table-header-cell">
                   <input type="checkbox" />
                 </th>
-                <th className="table-header-cell">Name</th>
-                <th className="table-header-cell">Email</th>
-                <th className="table-header-cell">Role</th>
-                <th className="table-header-cell">Actions</th>
+                <th className="users-table-header-cell">Name</th>
+                <th className="users-table-header-cell">Email</th>
+                <th className="users-table-header-cell">Role</th>
+                <th className="users-table-header-cell">Actions</th>
               </tr>
             </thead>
 
@@ -192,12 +192,19 @@ class UsersList extends Component {
             Delete Selected
           </button>
           <Pagination
-            className="pagination"
             activePage={this.state.activePage}
             itemsCountPerPage={10}
             totalItemsCount={usersList.length}
             pageRangeDisplayed={Math.ceil(usersList.length / 10)}
             onChange={this.handlingPageChange.bind(this)}
+            innerClass="pagination"
+            activeClass="active-item"
+            itemClass="current-page"
+            itemClassNext="next-item"
+            disabledClass="inactive-item"
+            linkClass="default-link"
+            activeLinkClass="active-link"
+            linkClassNext="next-link"
           />
         </div>
       </>

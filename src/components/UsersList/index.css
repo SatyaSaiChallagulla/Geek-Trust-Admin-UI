@@ -1,31 +1,42 @@
 .users-list-container {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  background-color: #ffffff;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(#ede395, #b5893e);
   background-size: cover;
+  min-height: 100vh;
+}
+@media screen and (min-width: 768px) {
+  .users-list-container {
+    align-items: center;
+    width: 100%;
+  }
 }
 
 .search-input {
   height: 40px;
   border-radius: 5px;
   width: 90%;
+  padding: 20px;
   padding-left: 10px;
-  align-self: flex-start;
+  align-self: center;
+}
+@media screen and (mn-width: 768px) {
+  .search-input {
+    font-size: 20px;
+  }
 }
 
 .users-table {
   padding: 20px;
   margin-top: 30px;
-  width: 20%;
+  width: 100%;
   border-collapse: collapse;
 }
 
 .users-table table,
-th,
-td {
+.users-table-header-cell {
   border: 1px solid black;
   padding-left: 5px;
 }
@@ -54,33 +65,27 @@ td {
   display: flex;
 }
 
-.pagination {
-  display: flex;
-  list-style-type: none;
-  color: white;
-  font-size: 30px;
-  align-self: center;
-  font-weight: 700;
-  align-self: stretch;
-  width: 300px;
-}
-
 .delete-selected-button {
-  background-color: tomato;
+  background-color: #fc0320;
   color: White;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
   outline: none;
   border: none;
   height: 40px;
   align-self: center;
   border-radius: 7px;
-  padding: 7px;
+}
+
+@media screen and (min-width: 768px) {
+  .delete-selected-button {
+    font-size: 14px;
+    padding: 7px;
+  }
 }
 .usersList-loader-container {
   justify-content: center;
-
   margin-top: 70px;
   padding: 30px;
 }
@@ -116,9 +121,61 @@ td {
   font-family: 'Roboto';
   font-size: 20px;
   color: #000000;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .no-data-heading {
+    font-size: 30px;
+  }
 }
 
-.prev-button {
-  border: 1px solid black;
-  margin: 30px;
+.pagination {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and(min-width:768px) {
+  .pagination {
+    padding-left: 0px;
+  }
+}
+
+.current-page {
+  background-color: #91bfed;
+  border: 1px solid #91bfed;
+  border-radius: 70px;
+  margin-right: 1px;
+  align-self: center;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .current-page {
+    padding: 15px;
+    margin-right: 20px;
+  }
+}
+
+.active-item {
+  background-color: transparent;
+  border: 2px solid #91bfed;
+}
+
+.inactive-item {
+  border: none;
+  background-color: #e1e2e3;
+}
+.default-link {
+  text-decoration: none;
+  font-size: 20px;
+  margin-right: 10px;
+  padding-left: 10px;
+  color: #000000;
+  cursor: pointer;
+  font-family: 'Roboto';
+  font-weight: 600;
+}
+
+.active-link {
+  color: #ffffff;
 }
